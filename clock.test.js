@@ -4,6 +4,7 @@ let Clock = require("./clock")
 
 module.exports = {
   "Clock component": {
+
     "returns the actual time in the format: 'hh:mm:ss'": () => {
       let clock = new Clock()
       expect(clock.getTime()).to.match(/\d\d:\d\d:\d\d/)
@@ -12,6 +13,13 @@ module.exports = {
       let clock = new Clock("13:37:42")
       expect(clock.getTime()).to.equal("13:37:42")
     },
+    // "counter grows": () => {
+    //   let clock = new Clock()
+    //   setTimeout(() => {
+    //     expect(clock.getCounter()).to.equal(2)
+    //     done()
+    //   }, 2250)
+    // },
     "updates its state in real time": done => {
       let clock = new Clock("13:37:42")
       setTimeout(() => {
