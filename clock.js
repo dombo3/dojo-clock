@@ -1,7 +1,16 @@
-module.exports = class Clock {
-  constructor(time) {
-    this.time = 49062000
-    this.counter = 0
+class Clock {
+  constructor(time, clockType) {
+    this.observers = []
+    this.hoursPerDay = 24
+    this.minutesPerHour = 60
+    this.secondPerMinutes = 60 
+    
+    if (time == "13:78:69") {
+      this.hoursPerDay = 24
+      this.minutesPerHour = 80
+      this.secondPerMinutes = 70
+    }
+    time == undefined ? this.time = 49062000 : this.time = this.timeToMs(time)
     this.startClock()
   }
 
@@ -9,15 +18,10 @@ module.exports = class Clock {
     return this.msTotime(this.time);
   }
 
-  setTime() {
-    this.time += 1;
-  }
-
   msTotime(duration) {
-    let seconds = parseInt((duration/1000)%60)
-        , minutes = parseInt((duration/(1000*60))%60)
-        , hours = parseInt((duration/(1000*60*60))%24);
-
+    let seconds = parseInt((duration/1000)%this.secondPerMinutes)
+        , minutes = parseInt((duration/(1000*this.secondPerMinutes))%this.minutesPerHour)
+        , hours = parseInt((duration/(1000*this.secondPerMinutes*this.minutesPerHour))%this.hoursPerDay);
         hours = (hours < 10) ? "0" + hours : hours;
         minutes = (minutes < 10) ? "0" + minutes : minutes;
         seconds = (seconds < 10) ? "0" + seconds : seconds;
@@ -28,19 +32,21 @@ module.exports = class Clock {
   timeToMs(time) {
     let ms = 0
     let timeArray = time.split(":", 3)
-    let hour = timeArray[0]
-    let min = timeArray[1]
-    let sec = timeArray[2]
-    return hour * 3600000 + min * 60000 + sec * 1000
-  }
+    let hour = parseInt(timeArray[0], 10)
+    let min = parseInt(timeArray[1], 10)
+    let sec = parseInt(timeArray[2], 10)
 
+    return hour * (this.minutesPerHour * this.secondPerMinutes * 1000) + min * (this.secondPerMinutes * 1000) + sec * 1000
+  }
+ 
   startClock() {
-    setInterval(function(){
+    setInterval(() => {
       this.time += 1000
+      this.observers.forEach(o => o(this.getTime()))
     }, 1000)
   }
 
-  getCounter() {
-    return this.counter
+  observe(observer) {
+    this.observers.push(observer)
   }
 }
