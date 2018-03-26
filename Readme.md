@@ -5,6 +5,7 @@ Practicing basic JavaScript syntax bulding a customizable clock. Create a clock 
 ## Prerequisites
 
 Your favourite code editor. Ex. [VSCode](https://code.visualstudio.com/)
+
 Node.js [installed](https://www.npmjs.com/get-npm?utm_source=house&utm_medium=homepage&utm_campaign=free%20orgs&utm_term=Install%20npm) with npm on your system.
 
 ## Todo
@@ -20,7 +21,9 @@ Node.js [installed](https://www.npmjs.com/get-npm?utm_source=house&utm_medium=ho
 ## Definitions
 
 [npm](https://docs.npmjs.com/getting-started/what-is-npm): Dependency Managment Tool
+
 [mocha](https://mochajs.org/): Test Framework
+
 [chai](https://www.npmjs.com/package/chai): Assertion Framework
 
 ## What You'll Learn
