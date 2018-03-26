@@ -12,6 +12,13 @@ module.exports = {
       let clock = new Clock("13:37:43")
       expect(clock.getTime()).to.equal("13:37:43")
     },
+    "allows setting clock type": done => {
+      let clock = new Clock("13:37:59", {hoursPerDay: 24, minutesPerHour: 60, secondPerMinutes: 60})
+      setTimeout(() => {
+        expect(clock.getTime()).to.equal("13:38:01")
+        done()
+      }, 2250)
+    },
     "updates its state in real time": done => {
       let clock = new Clock("13:37:42")
       setTimeout(() => {

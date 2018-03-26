@@ -11,12 +11,9 @@
     <p id='clock'></p>
 </body>
 <script>
-        let clock = new Clock("13:32:02")
-
+        let clock = new Clock("23:59:55", {hoursPerDay: 24, minutesPerHour: 60, secondPerMinutes: 60})
         clock.observe(time => {
         document.getElementById("clock").innerHTML = time
         })
-
-        // document.getElementById('clock').innerHTML = clock.getTime()
     </script>
 </html>

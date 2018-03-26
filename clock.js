@@ -1,16 +1,18 @@
 class Clock {
-  constructor(time, clockType) {
+  constructor(time, clock) {
     this.observers = []
     this.hoursPerDay = 24
-    this.minutesPerHour = 60
-    this.secondPerMinutes = 60 
-    
-    if (time == "13:78:69") {
-      this.hoursPerDay = 24
-      this.minutesPerHour = 80
-      this.secondPerMinutes = 70
+    this.minutesPerHour = 80
+    this.secondPerMinutes = 70
+
+    if (typeof clock !== "undefined") {
+      this.hoursPerDay = clock.hoursPerDay
+      this.minutesPerHour = clock.minutesPerHour
+      this.secondPerMinutes = clock.secondPerMinutes
     }
+    
     time == undefined ? this.time = 49062000 : this.time = this.timeToMs(time)
+    
     this.startClock()
   }
 
@@ -49,4 +51,8 @@ class Clock {
   observe(observer) {
     this.observers.push(observer)
   }
+}
+
+if (typeof module !== "undefined") {
+  module.exports = Clock;
 }
