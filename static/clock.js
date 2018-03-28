@@ -4,6 +4,7 @@ class Clock {
     this.hoursPerDay = 24
     this.minutesPerHour = 80
     this.secondPerMinutes = 70
+    this.tick = 1000
 
     if (typeof clock !== "undefined") {
       this.hoursPerDay = clock.hoursPerDay
@@ -18,6 +19,10 @@ class Clock {
 
   getTime() {
     return this.msTotime(this.time);
+  }
+
+  setTick(tick) {
+    this.tick = tick
   }
 
   msTotime(duration) {
@@ -43,7 +48,7 @@ class Clock {
  
   startClock() {
     setInterval(() => {
-      this.time += 1000
+      this.time += parseInt(this.tick)
       this.observers.forEach(o => o(this.getTime()))
     }, 1000)
   }

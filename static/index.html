@@ -8,12 +8,19 @@
     <script src="clock.js"></script>
 </head>
 <body>
+    <input id="step" type="number" onchange="updateStep()">
     <p id='clock'></p>
 </body>
 <script>
-        let clock = new Clock("23:59:55", {hoursPerDay: 24, minutesPerHour: 60, secondPerMinutes: 60})
+        let clock = new Clock("05:12:59", {hoursPerDay: 24, minutesPerHour: 60, secondPerMinutes: 60})
+        
         clock.observe(time => {
         document.getElementById("clock").innerHTML = time
         })
+
+        function updateStep() {
+            clock.setTick(document.getElementById("step").value * 1000)
+        }
+
     </script>
 </html>
